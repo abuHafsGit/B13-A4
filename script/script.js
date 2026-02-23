@@ -48,6 +48,7 @@ const toggleStyle = (id) => {
     selectedBtn.classList.remove('bg-white', 'text-black')
     selectedBtn.classList.add('bg-black', 'text-white')
 
+    currentStatus = id
 
     //hidden post
     if (id == 'Interview_btn') {
@@ -59,7 +60,7 @@ const toggleStyle = (id) => {
         } else {
             noJobs.classList.add('hidden')
             filtered_section.classList.remove('hidden')
-
+            // renderingInterview()
         }
         renderingInterview()
         total_2.innerText = InterviewList.length + ' of ' + all_jobs.children.length
@@ -78,15 +79,18 @@ const toggleStyle = (id) => {
         if (RejectedList.length == 0) {
             noJobs.classList.remove('hidden')
             all_jobs.classList.add('hidden')
+
         } else {
             all_jobs.classList.add('hidden')
             noJobs.classList.add('hidden')
             filtered_section.classList.remove('hidden')
+            // renderingRejectedList()
 
         }
         renderingRejectedList()
         total_2.innerText = RejectedList.length + ' of ' + all_jobs.children.length
     }
+
 }
 
 
@@ -117,11 +121,13 @@ mainContainer.addEventListener('click', (event) => {
         RejectedList = RejectedList.filter(item => item.job_name != jobInfo.job_name)
 
         //count Interview
+
         if (currentStatus == "Rejected_btn") {
             renderingInterview()
             console.log("interviw staus")
         }
         calculateCount()
+
     } else if (event.target.classList.contains('Rejected_btn')) {
         console.log('main container')
         const parentNode = event.target.parentNode.parentNode
@@ -144,19 +150,25 @@ mainContainer.addEventListener('click', (event) => {
 
         InterviewList = InterviewList.filter(item => item.job_name != jobInfo.job_name)
 
-        //remove
         if (currentStatus == 'Interview_btn') {
             renderingInterview()
             console.log("reject staus")
         }
         calculateCount()
+
     } else if (event.target.classList.contains('deleteItem')) {
         const parentNode = event.target.parentNode.parentNode.parentNode
         parentNode.remove()
         console.log(parentNode)
         calculateCount()
 
+    } else if (event.target.classList.contains('Rejected_btn')) {
+        const parentNode = event.target.parentNode.parentNode.parentNode
+        parentNode.remove()
+        console.log(parentNode)
+        calculateCount()
     }
+
 })
 
 
@@ -248,7 +260,7 @@ const renderingRejectedList = () => {
 
 
 
-// remove job 
+
 
 
 
