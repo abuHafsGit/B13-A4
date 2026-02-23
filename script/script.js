@@ -123,7 +123,7 @@ mainContainer.addEventListener('click', (event) => {
         //count Interview
 
         if (currentStatus == "Rejected_btn") {
-            renderingInterview()
+            renderingRejectedList()
             console.log("interviw staus")
         }
         calculateCount()
@@ -162,11 +162,14 @@ mainContainer.addEventListener('click', (event) => {
         console.log(parentNode)
         calculateCount()
 
+
     } else if (event.target.classList.contains('Rejected_btn')) {
         const parentNode = event.target.parentNode.parentNode.parentNode
         parentNode.remove()
         console.log(parentNode)
         calculateCount()
+
+
     }
 
 })
@@ -257,9 +260,6 @@ const renderingRejectedList = () => {
         filtered_section.appendChild(div)
     }
 }
-
-
-
 
 
 
