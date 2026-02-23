@@ -117,9 +117,11 @@ mainContainer.addEventListener('click', (event) => {
         RejectedList = RejectedList.filter(item => item.job_name != jobInfo.job_name)
 
         //count Interview
+        if (currentStatus == "Rejected_btn") {
+            renderingInterview()
+            console.log("interviw staus")
+        }
         calculateCount()
-        renderingInterview()
-        console.log(InterviewList)
     } else if (event.target.classList.contains('Rejected_btn')) {
         console.log('main container')
         const parentNode = event.target.parentNode.parentNode
@@ -141,8 +143,13 @@ mainContainer.addEventListener('click', (event) => {
         }
 
         InterviewList = InterviewList.filter(item => item.job_name != jobInfo.job_name)
+
+        //remove
+        if (currentStatus == 'Interview_btn') {
+            renderingInterview()
+            console.log("reject staus")
+        }
         calculateCount()
-        renderingRejectedList()
     } else if (event.target.classList.contains('deleteItem')) {
         const parentNode = event.target.parentNode.parentNode.parentNode
         parentNode.remove()
